@@ -6,10 +6,11 @@ const Profile = ({ token }) => {
   const [topTracks, setTopTracks] = useState([]);
   const [topArtists, setTopArtists] = useState([]);
 
+
   useEffect(() => {
     const fetchTopTracks = async () => {
       try {
-        const response = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
+        const response = await axios.get("https://api.spotify.com/v1/me/top/tracks?limit=5", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -57,9 +58,15 @@ const Profile = ({ token }) => {
       <h2>Top Artists</h2>
       <ul>
         {topArtists.map((artist) => (
-          <li key={artist.id}>{artist.name}</li>
+          <li key={artist.id}>{artist.name}
+          <img 
+          src={artist.images[2].url}
+          alt="No Image Found"/>
+          
+          </li>
         ))}
       </ul>
+
     </div>
   );
 };
