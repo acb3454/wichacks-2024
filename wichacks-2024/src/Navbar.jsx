@@ -8,8 +8,9 @@ export default function Navbar() {
       </Link>
       <ul>
         <CustomLink to="/feed">Feed</CustomLink>
-        <CustomLink to="/login">Login</CustomLink>
         <CustomLink to="/profile">Profile</CustomLink>
+        <CustomLink to="/login">Login</CustomLink>
+       
       </ul>
     </nav>
   )

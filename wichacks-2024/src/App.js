@@ -44,10 +44,10 @@ function App() {
     <Navbar />
           <div className="container">
             <Routes>
-              <Route path="/Feed" element={<Feed />} />
-              <Route path="/Login" element={<Login />} />
-              <Route path="/Profile" element={<Profile />} />
               <Route path="/" element={<Home />} />
+              <Route path="/Feed" element={<Feed />} />
+              <Route path="/Profile" element={<Profile />} />
+              <Route path="/Login" element={<Login />} />
             </Routes>
           </div>
 
