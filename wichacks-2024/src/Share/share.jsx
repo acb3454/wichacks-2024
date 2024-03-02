@@ -24,7 +24,7 @@ export default function Share() {
 
     try {
       const response = await axios.post('http://localhost:3000/updateData', data);
-      console.log(response.data);
+      console.log("data:", JSON.stringify(response.data, null, 2));
     } catch (error) {
       console.error(error.response.data);
     }
@@ -34,7 +34,7 @@ export default function Share() {
     <div className="share">
       <div className="shareWrapper">
         <form>
-          <input placeholder="What playlist are you creating?" className="shareInput"></input>
+          <input type= "text" name="playlistName" placeholder="What playlist are you creating?" className="shareInput"></input>
           <hr className="shareHr"></hr>
           <div className="shareOptions">
             <h3>Tags: </h3>
