@@ -18,7 +18,8 @@ app.post('/updateData', (req, res) => {
 
   const updatedData = [...existingData, newData];
 
-  fs.writeFileSync('/postData.js', `module.exports = ${JSON.stringify(updatedData)};`, 'utf-8');
+  // Corrected path for writing to postData.js
+  fs.writeFileSync(path.resolve(__dirname, 'postData.js'), `module.exports = ${JSON.stringify(updatedData)};`, 'utf-8');
 
   res.json({ message: 'Data updated successfully' });
 });
