@@ -1,70 +1,65 @@
-// Profile.js
+// Profile.jsx
 import React, { useEffect, useState } from "react";
-
-const AUTHORIZE = "https://accounts.spotify.com/authorize"
-const ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists?time_range=long-term&limit=10&offset=5"
+import axios from "axios";
 
 const Profile = ({ token }) => {
-  const [userInfo, setUserInfo] = useState(null);
-  const [topArtists, setTopArtists] = useState(null);
+  const [topTracks, setTopTracks] = useState([]);
+  const [topArtists, setTopArtists] = useState([]);
 
   useEffect(() => {
-    // Fetch user information using the Spotify API
-    const fetchUserInfo = async () => {
+    const fetchTopTracks = async () => {
       try {
-        const response = await fetch("https://api.spotify.com/v1/me", {
+        const response = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        if (response.ok) {
-          const data = await response.json();
-          setUserInfo(data);
-        } else {
-          console.error("Failed to fetch user information");
+        if (response.data.items) {
+          setTopTracks(response.data.items);
         }
       } catch (error) {
-        console.error("Error fetching user information:", error);
+        console.error("Error fetching top tracks:", error);
       }
     };
 
     const fetchTopArtists = async () => {
-        try {
-          const response = await fetch("https://api.spotify.com/v1/me/top/artists?offset=0&limit=10&time_range=long_term", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-  
-          if (response.ok) {
-            const data = await response.json();
-            setTopArtists(data);
-          } else {
-            console.error("Failed to fetch top artists");
-          }
-        } catch (error) {
-          console.error("Error fetching top artists:", error);
+      try {
+        const response = await axios.get("https://api.spotify.com/v1/me/top/artists", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.data.items) {
+          setTopArtists(response.data.items);
         }
-      };
+      } catch (error) {
+        console.error("Error fetching top artists:", error);
+      }
+    };
 
     if (token) {
-      fetchUserInfo();
+      fetchTopTracks();
       fetchTopArtists();
     }
   }, [token]);
 
   return (
     <div>
-      {userInfo ? (
-        <div>
-          <h2>Welcome, {userInfo.display_name}!</h2>
-          <h3>Your top Artists: {topArtists}</h3>
-          {/* Display other user information as needed */}
-        </div>
-      ) : (
-        <p>Loading user information...</p>
-      )}
+      <h2>Top Tracks</h2>
+      <ul>
+        {topTracks.map((track) => (
+          <li key={track.id}>{track.name}</li>
+        ))}
+      </ul>
+
+      <h2>Top Artists</h2>
+      <ul>
+        {topArtists.map((artist) => (
+          <li key={artist.id}>{artist.name}</li>
+        ))}
+      </ul>
     </div>
   );
 };
