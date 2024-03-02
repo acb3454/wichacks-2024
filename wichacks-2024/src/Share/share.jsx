@@ -26,7 +26,7 @@ export default function Share() {
       const response = await axios.post('http://localhost:3000/updateData', data);
       console.log(response.data);
     } catch (error) {
-      console.error('Error updating data:', error);
+      console.error(error.response.data);
     }
   };
 

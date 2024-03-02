@@ -2,21 +2,23 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
+const path = require('path'); // Import the path module
 
 const app = express();
 const PORT = 3000;
 
-app.use(cors()); // Enable CORS for all routes
+app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/updateData', (req, res) => {
   const newData = req.body;
 
-  // Assuming postData.js contains an array
-  const existingData = require('./src/postData');
+  // Use an absolute path
+  const existingData = require(path.resolve(__dirname, 'postData'));
+
   const updatedData = [...existingData, newData];
 
-  fs.writeFileSync('./src/postData.js', `module.exports = ${JSON.stringify(updatedData)};`, 'utf-8');
+  fs.writeFileSync('/postData.js', `module.exports = ${JSON.stringify(updatedData)};`, 'utf-8');
 
   res.json({ message: 'Data updated successfully' });
 });
