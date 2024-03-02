@@ -1,55 +1,47 @@
-import "./share.css"
-import Dropdown from 'react-bootstrap/Dropdown';
-// import BasicExample from "../Dropdown/dropdown"
-// import {} from "@material-ui/icons"
+import React, { useEffect } from "react";
+import axios from "axios";
+import "./share.css";
 
 export default function Share() {
+  useEffect(() => {
+    const form = document.querySelector('form');
+    if (form) {
+      form.addEventListener('submit', handleSubmit);
+    }
 
-    // const [desc] = useState([]);
+    return () => {
+      if (form) {
+        form.removeEventListener('submit', handleSubmit);
+      }
+    };
+  }, []);
 
-    // useEffect(() => {
-    //     setItems(postData);
-    // }, []);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
 
-    // const addItem = () => {
-    //     const newItem = {id: items.length + 1, name: ${desc}};
-    //     setItems([...items, newItem]);
-    // };
+    try {
+      const response = await axios.post('http://localhost:3000/updateData', data);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error updating data:', error);
+    }
+  };
 
-    return (
-        <div className = "share">
-            <div className = "shareWrapper">
-                <div className="shareTop"></div>
-                    <h2>Username</h2>
-                    {/* <input placeholder="What playlist are you creating?" className="shareInput"></input>
-                    <hr className = "shareHr"></hr> */}
-                <div className="shareBottom">
-                    <div className = "shareOptions">
-                    <input placeholder="What playlist are you creating?" className="shareInput"></input>
-                    <hr className = "shareHr"></hr>
-                        <h3>Tags: </h3>
-                    </div>
-                </div>
-                <button className = "shareButton">Share</button>
-            </div>
-        </div>
-    )
+  return (
+    <div className="share">
+      <div className="shareWrapper">
+        <form>
+          <input placeholder="What playlist are you creating?" className="shareInput"></input>
+          <hr className="shareHr"></hr>
+          <div className="shareOptions">
+            <h3>Tags: </h3>
+          </div>
+          <button className="shareButton" type="submit">Share</button>
+        </form>
+      </div>
+    </div>
+  );
 }
-
-// let form = document.querySelector('input');
-// form.addEventListener('submit', handleSubmit());
-
-// function handleSubmit(event) {
-//     event.preventDefault();
-//     let formData = new FormData(form);
-//     let data = Object.fromEntries(formData);
-//     let jsonData = JSON.stringify(data);
-
-//     fetch('http://localhost:3000', {
-//             method: POST,
-//             headers: {"Content-Type": "application/json"},
-//             body: jsonData
-//         }).then((res => res.json))
-//         .then(result => console.log(result))
-//         .catch(err => console.log(err))
-// }
