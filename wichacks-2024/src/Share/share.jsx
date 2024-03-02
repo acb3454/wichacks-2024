@@ -5,16 +5,16 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 export default function Share() {
 
-    const [desc] = useState([]);
+    // const [desc] = useState([]);
 
-    useEffect(() => {
-        setItems(postData);
-    }, []);
+    // useEffect(() => {
+    //     setItems(postData);
+    // }, []);
 
-    const addItem = () => {
-        const newItem = {id: items.length + 1, name: ${desc}};
-        setItems([...items, newItem]);
-    };
+    // const addItem = () => {
+    //     const newItem = {id: items.length + 1, name: ${desc}};
+    //     setItems([...items, newItem]);
+    // };
 
     return (
         <div className = "share">
@@ -30,7 +30,7 @@ export default function Share() {
                         <h3>Tags: </h3>
                     </div>
                 </div>
-                <button className = "shareButton" onClick={addItem}>Share</button>
+                <button className = "shareButton">Share</button>
             </div>
         </div>
     )
