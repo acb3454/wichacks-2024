@@ -1,8 +1,11 @@
-import logo from './logo.svg';
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import {useEffect, useState} from "react";
 import './App.css';
-import Profile from "./Profile/profile";
+import Navbar from "./Navbar"
+import Login from "./pages/login"
+import Feed from "./pages/feed"
+import Profile from "./pages/profile"
+import Home from "./pages/home"
+import { Route, Routes } from "react-router-dom"
 
 function App() {
   const CLIENT_ID = "470974f837054eeea1df14cebc95f27f"
@@ -36,6 +39,20 @@ function App() {
 
   return (
     <div className="App">
+
+
+    <Navbar />
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/Feed" element={<Feed />} />
+              <Route path="/Profile" element={<Profile />} />
+              <Route path="/Login" element={<Login />} />
+            </Routes>
+          </div>
+
+        
+
       <header className="App-header">
         <h1>Spotify React App</h1>
         { !token ?
