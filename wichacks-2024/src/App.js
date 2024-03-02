@@ -3,7 +3,7 @@ import './App.css';
 import Navbar from "./Navbar"
 import Login from "./pages/login"
 import Feed from "./pages/feed"
-import Profile from "./pages/profile"
+import Profile from "./Profile/profile"
 import Home from "./pages/home"
 import { Route, Routes } from "react-router-dom"
 
@@ -12,6 +12,8 @@ function App() {
   const REDIRECT_URI = "http://localhost:3000"
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
+  const SCOPES = "user-top-read"; 
+
 
   const [token, setToken] = useState("")
 
@@ -31,6 +33,7 @@ function App() {
     setToken(token)
 
   }, [])
+  
 
   const logout = () => {
     setToken("")
@@ -43,12 +46,12 @@ function App() {
 
     <Navbar />
           <div className="container">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/Feed" element={<Feed />} />
-              <Route path="/Profile" element={<Profile />} />
-              <Route path="/Login" element={<Login />} />
-            </Routes>
+          <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Feed" element={<Feed />} />
+          <Route path="/Profile" element={<Profile token={token} />} />
+          <Route path="/Login" element={<Login />} />
+        </Routes>
           </div>
 
         
@@ -56,8 +59,9 @@ function App() {
       <header className="App-header">
         <h1>Spotify React App</h1>
         { !token ?
-        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>
-        : <button onClick = {logout} >Log Out</button>}
+
+        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}>Login to Spotify</a>
+        : <button onClick = {logout} >Log Out</button>} 
         </header>
     </div>
   );
