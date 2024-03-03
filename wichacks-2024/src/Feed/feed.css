@@ -1,0 +1,8 @@
+.search {
+    display: flex;
+}
+
+.searchHeader{
+    margin-top: 2%;
+    margin-right: 2%;
+}

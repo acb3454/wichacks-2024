@@ -12,14 +12,11 @@ export default function Post({post}){
                 </div>
                 <div className = "postCenter">
                     <span className = "postText">{post.playlistName}</span>
+                    <p>Tag name here</p>
                 </div>
                 <div className = "postBottom">
-                    {/* <div className = "postBottonLeft"> */}
                         <button className = "commentBtn">Add Song</button>
-                    {/* </div> */}
-                    {/* <div className = "postBottonRight"> */}
                         <button className = "addBtn">Export Playlist</button>
-                    {/* </div> */}
                 </div>
             </div>
         </div>
