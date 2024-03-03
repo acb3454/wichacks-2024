@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SongSearch from '../SongSearch/SongSearch';
 import axios from 'axios';
+import "./posts.css"
 
 const Post = ({ post, token }) => {
   const [isSongSearchVisible, setIsSongSearchVisible] = useState(false);

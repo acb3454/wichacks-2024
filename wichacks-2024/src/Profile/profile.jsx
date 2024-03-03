@@ -97,7 +97,7 @@ const Profile = ({ token }) => {
   }, [token]);
 
   return (
-    <div style = {{backgroundColor:"#E3EBFF"}}>
+    <div style = {{backgroundColor:"#E3EBFF", borderRadius: "25px"}}>
       <br></br>
 
       <div>
