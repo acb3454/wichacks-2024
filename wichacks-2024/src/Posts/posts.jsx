@@ -11,7 +11,7 @@ export default function Post({post}){
                     </div>
                 </div>
                 <div className = "postCenter">
-                    <span className = "postText">{post.desc}</span>
+                    <span className = "postText">{post.playlistName}</span>
                 </div>
                 <div className = "postBottom">
                     {/* <div className = "postBottonLeft"> */}
