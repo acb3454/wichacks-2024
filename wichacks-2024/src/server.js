@@ -12,14 +12,16 @@ app.use(bodyParser.json());
 
 app.post('/updateData', (req, res) => {
   const newData = req.body;
+  console.log("data received:", newData);
   
   // Use an absolute path
   const existingData = require(path.resolve(__dirname, 'postData'));
 
-  const updatedData = [...existingData, newData];
+  // Append the new data to the existing array
+  existingData.push(newData);
 
   // Corrected path for writing to postData.js
-  fs.writeFileSync(path.resolve(__dirname, 'postData.js'), `module.exports = ${JSON.stringify(updatedData)};`, 'utf-8');
+  fs.writeFileSync(path.resolve(__dirname, 'postData.js'), `module.exports = ${JSON.stringify(existingData)};`, 'utf-8');
   
   res.json({ message: 'Data updated successfully' });
 });
@@ -27,4 +29,3 @@ app.post('/updateData', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
