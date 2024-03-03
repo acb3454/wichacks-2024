@@ -84,6 +84,7 @@ const Profile = ({ token }) => {
       <br></br>
 
       <div>
+        <img src = {displayPhoto}></img>
         <p>Username: {displayName}</p>
       </div>
       
