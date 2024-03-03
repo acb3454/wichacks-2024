@@ -6,7 +6,7 @@ export default function Home() {
       <div class = "homeDiv">
 
         <img src = {logo}/>
-        <h2>you develop a social media platform to uplift one another through music and inspire community.</h2>
+        <h2>You develop a social media platform to uplift one another through music and inspire community.</h2>
 
         <div class = "container">
           <img src = "../wichacks.JPG" alt = "developers at wichacks 2024" class = "devs"/>
