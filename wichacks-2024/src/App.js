@@ -21,6 +21,8 @@ function App() {
   const [token, setToken] = useState("")
   const [displayName, setDisplayName] = useState(""); // New state variable for display name
 
+  
+
   useEffect( ()=>{
     const hash = window.location.hash
     let token = window.localStorage.getItem("token")
@@ -36,25 +38,32 @@ function App() {
 
     setToken(token)
 
+    
+
+    const fetchDisplayName = async () => {
+      try {
+        const response = await axios.get("https://api.spotify.com/v1/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("getting display name")
+        console.log(response.data)
+        setDisplayName(response.data.display_name);
+      } catch (error) {
+        console.error("Error fetching display name:", error);
+      }
+    };
+
     if(token){
       fetchDisplayName();
     }
 
+    
+
   }, [])
 
-  const fetchDisplayName = async () => {
-    try {
-      const response = await axios.get("https://api.spotify.com/v1/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log("getting display name")
-      setDisplayName(response.data.display_name);
-    } catch (error) {
-      console.error("Error fetching display name:", error);
-    }
-  };
+  
   
 
   const logout = () => {
