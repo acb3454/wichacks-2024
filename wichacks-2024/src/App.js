@@ -5,6 +5,7 @@ import Login from "./pages/login"
 import Feed from "./Feed/feed"
 import Profile from "./Profile/profile"
 import Home from "./pages/home"
+import Highlights from "./HighlightsPage/Highlights";
 import { Route, Routes } from "react-router-dom"
 
 function App() {
@@ -52,6 +53,8 @@ function App() {
           <Route path="/Feed" element={<Feed token = {token}/>} />
           <Route path="/Profile" element={<Profile token={token} />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/Highlights" element={<Highlights />} />
+
         </Routes>
           </div>
 
