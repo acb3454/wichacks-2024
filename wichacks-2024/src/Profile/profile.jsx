@@ -100,7 +100,11 @@ const Profile = ({ token }) => {
     <div style = {{backgroundColor:"#E3EBFF"}}>
       <br></br>
 
-      <div style={{display:"flex",alignItems:"center", marginLeft:"50px"}}>
+      <div>
+      {displayName
+        ? <div>
+
+<div style={{display:"flex",alignItems:"center", marginLeft:"50px"}}>
             <div id="frame" style={{alignItems:"center"}}>
             <img id="myImg" src={displayPhoto}></img>
           </div>
@@ -142,6 +146,11 @@ const Profile = ({ token }) => {
           </li>
         ))}
       </ul>
+
+        </div>
+        : <p>Login to see profile information!</p>
+      }
+      </div>
 
       <br></br>
 

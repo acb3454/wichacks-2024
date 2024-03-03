@@ -8,7 +8,14 @@ import "./share.css";
 export default function Share({ token }) {
   const [nextId, setNextId] = useState(1);
   const [displayName, setDisplayName] = useState("");
+  const [selectedTag, setSelectedTag] = useState(null);
+
+  
   const formRef = useRef(null);
+
+  const handleTagSelect = (tag) => {
+    setSelectedTag(tag);
+  };
 
   const fetchDisplayName = async () => {
     try {
@@ -36,10 +43,10 @@ export default function Share({ token }) {
 
     // Include display name in the data
     data.username = displayName;
+    data.tag = selectedTag;
 
     // Add an empty array for songs in the initial post
     data.songs = [];
-
     data.id = nextId;
     setNextId((prevId) => prevId + 1);
 
@@ -81,7 +88,7 @@ export default function Share({ token }) {
           <hr className="shareHr"></hr>
           <div className="shareOptions">
             <h3>Tags: </h3>
-            <BasicExample />
+            <BasicExample onTagSelect={handleTagSelect} />
           </div>
           <button className="shareButton" type="submit">
             Share
