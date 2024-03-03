@@ -15,6 +15,7 @@ export default function Navbar() {
         <CustomLink to="/feed">Feed</CustomLink>
         <CustomLink to="/profile">Profile</CustomLink>
         <CustomLink to="/login">Login</CustomLink>
+        <CustomLink to="/highlights">Highlights</CustomLink>
        
       </ul>
     </nav>
