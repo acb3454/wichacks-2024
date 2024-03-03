@@ -12,3 +12,11 @@
     padding: 5%;
     border-radius: 25px;
 }
+
+.shareOptions{
+    display: flex;
+}
+
+.moodTitle {
+    margin-top: 2%;
+}

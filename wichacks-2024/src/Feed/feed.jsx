@@ -23,7 +23,7 @@ export default function Feed({ token, display_name}) {
       <div className="feedWrapper">
         <div className="search">
           <div className="shareOptions">
-            <h3>Tags: </h3>
+            <h3>current mood: </h3>
             <BasicExample2 onTagSelect={handleTagSelect} />
           </div>
         </div>
