@@ -7,8 +7,8 @@ import coolLine from "../Photos/coolLine.png"
 const Profile = ({ token }) => {
   const [topTracks, setTopTracks] = useState([]);
   const [topArtists, setTopArtists] = useState([]);
-  const [user, setUser] = useState([]);
-
+  const [displayName, setDisplayName] = useState(""); // New state variable for display name
+  const [displayPhoto, setDisplayPhoto] = useState(""); // New state variable for display photo
 
   useEffect(() => {
     const fetchTopTracks = async () => {
@@ -43,9 +43,39 @@ const Profile = ({ token }) => {
       }
     };
 
+    const fetchDisplayName = async () => {
+      try {
+        const response = await axios.get("https://api.spotify.com/v1/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("getting display name")
+        setDisplayName(response.data.display_name);
+      } catch (error) {
+        console.error("Error fetching display name:", error);
+      }
+    };
+
+    const fetchDisplayPhoto = async () => {
+      try {
+        const response = await axios.get("https://api.spotify.com/v1/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("getting display phoyo")
+        setDisplayPhoto(response.data.images[0].url);
+      } catch (error) {
+        console.error("Error fetching display photo:", error);
+      }
+    };
+
     if (token) {
       fetchTopTracks();
       fetchTopArtists();
+      fetchDisplayName();
+      fetchDisplayPhoto();
     }
   }, [token]);
 
@@ -53,7 +83,10 @@ const Profile = ({ token }) => {
     <div style = {{backgroundColor:"#E3EBFF"}}>
       <br></br>
 
-      <p>Username: AHHHHHH</p>
+      <div>
+        <p>Username: {displayName}</p>
+      </div>
+      
 
       <br></br>
       <h2>Top Tracks</h2>
