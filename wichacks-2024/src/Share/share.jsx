@@ -1,3 +1,5 @@
+// Share.jsx
+
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
 import BasicExample from "../Dropdown/dropdown";
@@ -5,7 +7,7 @@ import "./share.css";
 
 export default function Share({ token }) {
   const [nextId, setNextId] = useState(1);
-  const [displayName, setDisplayName] = useState(""); // New state variable for display name
+  const [displayName, setDisplayName] = useState("");
   const formRef = useRef(null);
 
   const fetchDisplayName = async () => {
@@ -15,7 +17,6 @@ export default function Share({ token }) {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("getting display name")
       setDisplayName(response.data.display_name);
     } catch (error) {
       console.error("Error fetching display name:", error);
@@ -30,12 +31,14 @@ export default function Share({ token }) {
 
     // Fetch display name if not already fetched
     if (!displayName) {
-      console.log("need to fetch display name")
       fetchDisplayName();
     }
 
     // Include display name in the data
     data.username = displayName;
+
+    // Add an empty array for songs in the initial post
+    data.songs = [];
 
     data.id = nextId;
     setNextId((prevId) => prevId + 1);
