@@ -8,7 +8,7 @@ export default function Share({ token }) {
   const [displayName, setDisplayName] = useState(""); // New state variable for display name
   const formRef = useRef(null);
 
-  const fetchDisplayName = useCallback(async () => {
+  const fetchDisplayName = async () => {
     try {
       const response = await axios.get("https://api.spotify.com/v1/me", {
         headers: {
@@ -20,7 +20,7 @@ export default function Share({ token }) {
     } catch (error) {
       console.error("Error fetching display name:", error);
     }
-  }, [token]);
+  };
 
   const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
@@ -31,7 +31,7 @@ export default function Share({ token }) {
     // Fetch display name if not already fetched
     if (!displayName) {
       console.log("need to fetch display name")
-      await fetchDisplayName();
+      fetchDisplayName();
     }
 
     // Include display name in the data
