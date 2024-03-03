@@ -5,6 +5,9 @@ import "./profile.css"
 import coolLine from "../Photos/coolLine.png"
 import poloroid from "../Photos/poloroid.png"
 
+import Post from "../Posts/posts";
+import Posts from "../postData";
+
 const Profile = ({ token }) => {
   const [topTracks, setTopTracks] = useState([]);
   const [topArtists, setTopArtists] = useState([]);
@@ -96,6 +99,11 @@ const Profile = ({ token }) => {
     }
   }, [token]);
 
+
+  // Filter posts based on the selected tag
+  const filteredPosts = Posts.filter((post) => post.username === displayName)
+   //const filteredPosts = Posts;
+
   return (
     <div style = {{backgroundColor:"#E3EBFF", borderRadius: "25px"}}>
       <br></br>
@@ -152,7 +160,21 @@ const Profile = ({ token }) => {
       }
       </div>
 
+      <img src={coolLine} style = {{width: "75%", marginTop: "30px", marginBottom: "30px"}}></img>
+
+      <h2>Posts</h2>
       <br></br>
+
+      <div className="feed">
+          <div className="feedWrapper">
+
+              {filteredPosts.map((p) => (
+              <Post token={token} key={p.id} post={p} />
+              ))}
+
+          </div>
+      </div>
+
 
     </div>
   );
