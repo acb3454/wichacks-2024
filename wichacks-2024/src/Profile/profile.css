@@ -1,7 +1,21 @@
-.no-bullets {
-    list-style-type: none;
-  }
 
-.vintage {
-    border: 5px solid #555;
-   }
+
+#frame {
+    position:relative;
+
+    width: 441px;
+    height: 556px;
+
+    background-image: url(../Photos/poloroid.png);
+    background-position: center;
+    background-size: cover; }
+
+#myImg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 60px;
+
+    display: block;
+    margin: auto; }

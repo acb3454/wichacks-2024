@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./profile.css"
 import coolLine from "../Photos/coolLine.png"
+import poloroid from "../Photos/poloroid.png"
 
 const Profile = ({ token }) => {
   const [topTracks, setTopTracks] = useState([]);
   const [topArtists, setTopArtists] = useState([]);
   const [displayName, setDisplayName] = useState(""); // New state variable for display name
   const [displayPhoto, setDisplayPhoto] = useState(""); // New state variable for display photo
+  const [followers, setFollowers] = useState(""); // New state variable for display photo
 
   useEffect(() => {
     const fetchTopTracks = async () => {
@@ -57,6 +59,20 @@ const Profile = ({ token }) => {
       }
     };
 
+    const fetchFollowers = async () => {
+      try {
+        const response = await axios.get("https://api.spotify.com/v1/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("getting followers")
+        setFollowers(response.data.followers.total);
+      } catch (error) {
+        console.error("Error fetching followers:", error);
+      }
+    };
+
     const fetchDisplayPhoto = async () => {
       try {
         const response = await axios.get("https://api.spotify.com/v1/me", {
@@ -65,7 +81,7 @@ const Profile = ({ token }) => {
           },
         });
         console.log("getting display phoyo")
-        setDisplayPhoto(response.data.images[0].url);
+        setDisplayPhoto(response.data.images[1].url);
       } catch (error) {
         console.error("Error fetching display photo:", error);
       }
@@ -76,6 +92,7 @@ const Profile = ({ token }) => {
       fetchTopArtists();
       fetchDisplayName();
       fetchDisplayPhoto();
+      fetchFollowers();
     }
   }, [token]);
 
@@ -83,10 +100,16 @@ const Profile = ({ token }) => {
     <div style = {{backgroundColor:"#E3EBFF"}}>
       <br></br>
 
-      <div>
-        <img src = {displayPhoto}></img>
-        <p>Username: {displayName}</p>
+      <div style={{display:"flex",alignItems:"center", marginLeft:"50px"}}>
+            <div id="frame" style={{alignItems:"center"}}>
+            <img id="myImg" src={displayPhoto}></img>
+          </div>
+          <p style={{fontSize:"24px", marginRight:"50px"}}>Username: {displayName}</p>
+          <p style={{fontSize:"24px", marginRight:"50px"}}>-----------------------</p>
+          <p style={{fontSize:"24px", marginRight:"25px"}}>{followers} Followers</p>
       </div>
+      
+        
       
 
       <br></br>
