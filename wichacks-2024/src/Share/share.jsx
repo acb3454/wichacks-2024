@@ -26,6 +26,7 @@ export default function Share({ display_name, token }) {
     
     data.tag = selectedTag;
     data.username = display_name;
+    console.log("display name in share: " + display_name)
     // Add an empty array for songs in the initial post
     data.songs = [];
     data.id = nextId;
@@ -41,7 +42,7 @@ export default function Share({ display_name, token }) {
     } catch (error) {
       console.error(error.response.data);
     }
-  }, [nextId, token]);
+  }, [nextId, token, display_name, selectedTag]);
 
   useEffect(() => {
     const form = formRef.current;

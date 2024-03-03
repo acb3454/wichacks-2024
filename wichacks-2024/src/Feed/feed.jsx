@@ -7,9 +7,8 @@ import Form from 'react-bootstrap/Form';
 import BasicExample2 from "../Dropdown2/dropdown2";
 import axios from 'axios';
 
-export default function Feed({ token }) {
+export default function Feed({ token, display_name}) {
   const [selectedTag, setSelectedTag] = useState(null);
-
   const handleTagSelect = (tag) => {
     setSelectedTag(tag);
   };
@@ -30,7 +29,7 @@ export default function Feed({ token }) {
         </div>
 
         {/* Pass the token to the Share component */}
-        <Share token={token} />
+        <Share token={token } display_name={display_name} />
 
         {/* Map through filtered posts instead of all posts */}
         {filteredPosts.map((p) => (
