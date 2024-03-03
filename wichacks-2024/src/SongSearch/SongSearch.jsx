@@ -1,9 +1,8 @@
-// SongSearch.jsx
 import React, { useState } from "react";
 import axios from "axios";
 import "./SongSearch.css";
 
-export default function SongSearch({ token, onSongSelect }) {
+export default function SongSearch({ token, playlistName, onSongSelect }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedSong, setSelectedSong] = useState(null); // New state for the selected song
@@ -30,17 +29,25 @@ export default function SongSearch({ token, onSongSelect }) {
   const handleSongSelect = (selectedSong) => {
     // Update the selected song state
     setSelectedSong(selectedSong);
-    console.log(selectedSong)
+
     // Notify parent component about the selected song
     onSongSelect(selectedSong);
   };
 
-  const handlePutRequest = () => {
+  const handleAddSong = () => {
     // Check if a song is selected
     if (selectedSong) {
-      // Perform your PUT request using selectedSong
-      // Example: axios.put('your_put_url', selectedSong)
-      console.log("PUT request with selected song:", selectedSong);
+      // Perform a PUT request to update the post with the selected song
+      axios.put(`http://localhost:3001/addSong/${playlistName}`, {
+        selectedSong: selectedSong,
+      })
+      .then(response => {
+        console.log(response.data);
+        // Do any additional handling if needed
+      })
+      .catch(error => {
+        console.error("Error adding song:", error);
+      });
     } else {
       console.warn("No song selected");
     }
@@ -71,12 +78,11 @@ export default function SongSearch({ token, onSongSelect }) {
             <p>{selectedSong.name}</p>
             <p>{selectedSong.artists.map((artist) => artist.name).join(", ")}</p>
             {/* Add more details if needed */}
+            <button onClick={handleAddSong}>Add Song</button>
           </div>
         ) : (
           <p>No song selected</p>
         )}
-
-        <button onClick={handlePutRequest}>Perform PUT Request</button>
       </div>
     </div>
   );

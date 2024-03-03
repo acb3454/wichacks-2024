@@ -2,22 +2,34 @@
 
 import "./posts.css";
 import { useState } from "react";
-import AddSong from "../AddSong/AddSong";
+import SongSearch from "../SongSearch/SongSearch";
+import axios from "axios";
 
 export default function Post({ post, token }) {
-  const [isAddSongVisible, setIsAddSongVisible] = useState(false);
+  const [isSongSearchVisible, setIsSongSearchVisible] = useState(false);
 
   const handleAddSong = () => {
-    // Show the AddSong dialog
-    setIsAddSongVisible(true);
+    setIsSongSearchVisible(true);
   };
 
-  const handleSongAdd = () => {
-    // Close the AddSong dialog after the song is added
-    setIsAddSongVisible(false);
-
-    // TODO: Perform any additional actions after the song is added to the post
+  const handleSongSelect = async (selectedSong) => {
+    try {
+      // Make a PUT request to update the post with the selected song
+      const response = await axios.put(
+        `http://localhost:3001/addSong/${post.playlistName}`, // Update the endpoint
+        {
+          song: selectedSong,
+        }
+      );
+  
+      console.log("PUT request response:", response.data);
+    } catch (error) {
+      console.error("Error updating post with selected song:", error);
+    }
+  
+    setIsSongSearchVisible(false);
   };
+
 
   return (
     <div className="post">
@@ -39,9 +51,8 @@ export default function Post({ post, token }) {
         </div>
       </div>
 
-      {isAddSongVisible && (
-        // Use the AddSong component to handle song selection and addition
-        <AddSong postId={post.id} token={token} onSongAdd={handleSongAdd} />
+      {isSongSearchVisible && (
+        <SongSearch token={token} onSongSelect={handleSongSelect} />
       )}
     </div>
   );
