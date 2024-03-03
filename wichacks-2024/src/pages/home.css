@@ -1,0 +1,23 @@
+.homeDiv{
+    padding: 2%;
+}
+.devs {
+    width: 50%;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h4 {
+    margin: 5%;
+    padding: 2%;
+    background-color: #F4A5AE;
+    border-radius: 25px;
+}
+
+img {
+    border-radius: 25px;
+}
