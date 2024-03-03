@@ -16,7 +16,7 @@ export default function Post({ post, token }) {
     try {
       // Make a PUT request to update the post with the selected song
       const response = await axios.put(
-        `http://localhost:3001/addSong/${post.playlistName}`, // Update the endpoint
+        `http://localhost:3001/addSong/${encodeURIComponent(post.playlistName)}`, // Update the endpoint
         {
           song: selectedSong,
         }
@@ -30,7 +30,6 @@ export default function Post({ post, token }) {
     setIsSongSearchVisible(false);
   };
 
-
   return (
     <div className="post">
       <div className="postWrapper">
@@ -43,6 +42,19 @@ export default function Post({ post, token }) {
           <span className="postText">{post.playlistName}</span>
           <p>Tag name here</p>
         </div>
+
+        {/* Display songs if available */}
+        {post.songs && post.songs.length > 0 && (
+          <div className="postSongs">
+            <h4>Songs:</h4>
+            <ul>
+              {post.songs.map((song, index) => (
+                <li key={index}>{song.name} - {song.artists.map((artist) => artist.name).join(", ")}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className="postBottom">
           <button className="commentBtn" onClick={handleAddSong}>
             Add Song
