@@ -1,11 +1,8 @@
-// Post.jsx
+import React, { useState } from 'react';
+import SongSearch from '../SongSearch/SongSearch';
+import axios from 'axios';
 
-import "./posts.css";
-import { useState } from "react";
-import SongSearch from "../SongSearch/SongSearch";
-import axios from "axios";
-
-export default function Post({ post, token }) {
+const Post = ({ post, token }) => {
   const [isSongSearchVisible, setIsSongSearchVisible] = useState(false);
 
   const handleAddSong = () => {
@@ -16,18 +13,73 @@ export default function Post({ post, token }) {
     try {
       // Make a PUT request to update the post with the selected song
       const response = await axios.put(
-        `http://localhost:3001/addSong/${encodeURIComponent(post.playlistName)}`, // Update the endpoint
+        `http://localhost:3001/addSong/${encodeURIComponent(post.playlistName)}`,
         {
           song: selectedSong,
         }
       );
-  
-      console.log("PUT request response:", response.data);
+
+      console.log('PUT request response:', response.data);
     } catch (error) {
-      console.error("Error updating post with selected song:", error);
+      console.error('Error updating post with selected song:', error);
     }
-  
+
     setIsSongSearchVisible(false);
+  };
+
+  const createSpotifyPlaylist = async (playlistName) => {
+    // Use the Spotify API to create a new playlist
+    try {
+      const response = await axios.post(
+        'https://api.spotify.com/v1/me/playlists',
+        {
+          name: playlistName,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      return response.data.id; // Return the playlist ID
+    } catch (error) {
+      console.error('Error creating playlist:', error);
+      return null;
+    }
+  };
+
+  const addTracksToPlaylist = async (playlistId, tracks) => {
+    // Use the Spotify API to add tracks to the playlist
+    try {
+      await axios.post(
+        `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+        {
+          uris: tracks.map((track) => track.uri),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      console.log('Tracks added to playlist successfully');
+    } catch (error) {
+      console.error('Error adding tracks to playlist:', error);
+    }
+  };
+
+  const handleExportPlaylist = async () => {
+    // Create a new playlist on Spotify
+    const playlistId = await createSpotifyPlaylist(post.playlistName);
+
+    if (playlistId) {
+      // Add tracks to the created playlist
+      addTracksToPlaylist(playlistId, post.songs);
+    }
   };
 
   return (
@@ -59,7 +111,9 @@ export default function Post({ post, token }) {
           <button className="commentBtn" onClick={handleAddSong}>
             Add Song
           </button>
-          <button className="addBtn">Export Playlist</button>
+          <button className="addBtn" onClick={handleExportPlaylist}>
+            Export Playlist
+          </button>
         </div>
       </div>
 
@@ -68,4 +122,6 @@ export default function Post({ post, token }) {
       )}
     </div>
   );
-}
+};
+
+export default Post;
