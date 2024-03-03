@@ -27,6 +27,7 @@ app.post('/updateData', (req, res) => {
 app.put('/addSong/:playlistName', (req, res) => {
   const { playlistName } = req.params;
   const { song } = req.body; // Correct parameter name
+  console.log("looking for " + playlistName + " to add " + song)
 
   // Find the post in the existing data array
   const postIndex = existingData.findIndex(post => post.playlistName === playlistName);

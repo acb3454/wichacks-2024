@@ -92,7 +92,7 @@ const Post = ({ post, token }) => {
         </div>
         <div className="postCenter">
           <span className="postText">{post.playlistName}</span>
-          <p>Tag name here</p>
+          {post.tag && <p>{post.tag}</p>}
         </div>
 
         {/* Display songs if available */}
