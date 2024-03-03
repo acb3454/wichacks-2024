@@ -163,7 +163,6 @@ const Profile = ({ token }) => {
       <img src={coolLine} style = {{width: "75%", marginTop: "30px", marginBottom: "30px"}}></img>
 
       <h2>Posts</h2>
-      <br></br>
 
       <div className="feed">
           <div className="feedWrapper">
