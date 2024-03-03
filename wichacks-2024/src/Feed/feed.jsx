@@ -14,11 +14,16 @@ export default function Feed({ token }) {
     setSelectedTag(tag);
   };
 
+  // Filter posts based on the selected tag
+  const filteredPosts = selectedTag
+    ? Posts.filter((post) => post.tag === selectedTag)
+    : Posts;
+
   return (
     <div className="feed">
       <div className="feedWrapper">
         <div className="search">
-        <div className="shareOptions">
+          <div className="shareOptions">
             <h3>Tags: </h3>
             <BasicExample2 onTagSelect={handleTagSelect} />
           </div>
@@ -27,7 +32,8 @@ export default function Feed({ token }) {
         {/* Pass the token to the Share component */}
         <Share token={token} />
 
-        {Posts.map((p) => (
+        {/* Map through filtered posts instead of all posts */}
+        {filteredPosts.map((p) => (
           <Post token={token} key={p.id} post={p} />
         ))}
       </div>

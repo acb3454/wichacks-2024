@@ -17,6 +17,7 @@ export default function BasicExample2({ onTagSelect }) {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
+      <Dropdown.Item eventKey="">Select All</Dropdown.Item>
         <Dropdown.Item eventKey="that feeling when you're falling in love">you're falling in love</Dropdown.Item>
         <Dropdown.Item eventKey="that feeling when you're feeling heartbroken">you're heartbroken</Dropdown.Item>
         <Dropdown.Item eventKey="that feeling when you're being ghosted">you're being ghosted</Dropdown.Item>
