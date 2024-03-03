@@ -2,14 +2,14 @@ import {useEffect, useState} from "react";
 import './App.css';
 import Navbar from "./Navbar"
 import Login from "./pages/login"
-import Feed from "./pages/feed"
+import Feed from "./Feed/feed"
 import Profile from "./Profile/profile"
 import Home from "./pages/home"
 import { Route, Routes } from "react-router-dom"
 
 function App() {
   const CLIENT_ID = "470974f837054eeea1df14cebc95f27f"
-  const REDIRECT_URI = "http://localhost:3001"
+  const REDIRECT_URI = encodeURIComponent("http://localhost:3000");
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
   const SCOPES = "user-top-read"; 

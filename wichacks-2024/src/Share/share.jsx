@@ -50,7 +50,7 @@ export default function Share({ token }) {
     setNextId(prevId => prevId + 1);
 
     try {
-      const response = await axios.post('http://localhost:3000/updateData', data);
+      const response = await axios.post('http://localhost:3001/updateData', data);
       console.log("data:", JSON.stringify(response.data, null, 2));
       form.reset();
     } catch (error) {
