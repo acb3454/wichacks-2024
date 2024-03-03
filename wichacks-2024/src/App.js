@@ -58,7 +58,7 @@ function App() {
         
 
       <header className="App-header">
-        <h1>Spotify React App</h1>
+        {/* <h1>Spotify React App</h1> */}
         { !token ?
 
         <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}&show_dialog=${SHOW_DIALOG}`}>Login to Spotify</a>
