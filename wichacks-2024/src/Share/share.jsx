@@ -5,9 +5,8 @@ import axios from "axios";
 import BasicExample from "../Dropdown/dropdown";
 import "./share.css";
 
-export default function Share({ token }) {
+export default function Share({ display_name, token }) {
   const [nextId, setNextId] = useState(1);
-  const [displayName, setDisplayName] = useState("");
   const [selectedTag, setSelectedTag] = useState(null);
 
   
@@ -17,34 +16,16 @@ export default function Share({ token }) {
     setSelectedTag(tag);
   };
 
-  const fetchDisplayName = async () => {
-    try {
-      const response = await axios.get("https://api.spotify.com/v1/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setDisplayName(response.data.display_name);
-    } catch (error) {
-      console.error("Error fetching display name:", error);
-    }
-  };
-
   const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
 
-    // Fetch display name if not already fetched
-    if (!displayName) {
-      fetchDisplayName();
-    }
-
     // Include display name in the data
-    data.username = displayName;
+    
     data.tag = selectedTag;
-
+    data.username = display_name;
     // Add an empty array for songs in the initial post
     data.songs = [];
     data.id = nextId;
@@ -60,7 +41,7 @@ export default function Share({ token }) {
     } catch (error) {
       console.error(error.response.data);
     }
-  }, [nextId, displayName, fetchDisplayName, token]);
+  }, [nextId, token]);
 
   useEffect(() => {
     const form = formRef.current;
