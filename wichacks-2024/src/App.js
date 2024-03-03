@@ -49,7 +49,7 @@ function App() {
           <div className="container">
           <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Feed" element={<Feed />} />
+          <Route path="/Feed" element={<Feed token = {token}/>} />
           <Route path="/Profile" element={<Profile token={token} />} />
           <Route path="/Login" element={<Login />} />
         </Routes>

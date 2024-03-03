@@ -5,14 +5,37 @@ import "./share.css";
 
 export default function Share({ token }) {
   const [nextId, setNextId] = useState(1);
+  const [displayName, setDisplayName] = useState(""); // New state variable for display name
   const formRef = useRef(null);
+
+  const fetchDisplayName = useCallback(async () => {
+    try {
+      const response = await axios.get("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("getting display name")
+      setDisplayName(response.data.display_name);
+    } catch (error) {
+      console.error("Error fetching display name:", error);
+    }
+  }, [token]);
 
   const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
-    console.log("handleSubmit is called");
     const form = event.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
+
+    // Fetch display name if not already fetched
+    if (!displayName) {
+      console.log("need to fetch display name")
+      await fetchDisplayName();
+    }
+
+    // Include display name in the data
+    data.username = displayName;
 
     data.id = nextId;
     setNextId((prevId) => prevId + 1);
@@ -27,10 +50,9 @@ export default function Share({ token }) {
     } catch (error) {
       console.error(error.response.data);
     }
-  }, [nextId]);
+  }, [nextId, displayName, fetchDisplayName, token]);
 
   useEffect(() => {
-    console.log("use Effect gets called");
     const form = formRef.current;
     if (form) {
       form.addEventListener("submit", handleSubmit);
