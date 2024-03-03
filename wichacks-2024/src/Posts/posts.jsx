@@ -1,21 +1,22 @@
+// Post.jsx
+
 import "./posts.css";
 import { useState } from "react";
-import SongSearch from "../SongSearch/SongSearch"; // Adjust the path as needed
+import AddSong from "../AddSong/AddSong";
 
 export default function Post({ post, token }) {
-  const [isSongSearchVisible, setIsSongSearchVisible] = useState(false);
+  const [isAddSongVisible, setIsAddSongVisible] = useState(false);
 
   const handleAddSong = () => {
-    // Show the song search dialog
-    setIsSongSearchVisible(true);
+    // Show the AddSong dialog
+    setIsAddSongVisible(true);
   };
 
-  const handleSongSelect = (selectedSong) => {
-    // TODO: Make a PUT request to update the post with the selected song
-    console.log("Selected Song:", selectedSong);
+  const handleSongAdd = () => {
+    // Close the AddSong dialog after the song is added
+    setIsAddSongVisible(false);
 
-    // Close the song search dialog
-    setIsSongSearchVisible(false);
+    // TODO: Perform any additional actions after the song is added to the post
   };
 
   return (
@@ -38,8 +39,9 @@ export default function Post({ post, token }) {
         </div>
       </div>
 
-      {isSongSearchVisible && (
-        <SongSearch token={token} onSongSelect={handleSongSelect} />
+      {isAddSongVisible && (
+        // Use the AddSong component to handle song selection and addition
+        <AddSong postId={post.id} token={token} onSongAdd={handleSongAdd} />
       )}
     </div>
   );

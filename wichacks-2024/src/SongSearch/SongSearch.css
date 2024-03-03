@@ -1,0 +1,39 @@
+/* SongSearch.css */
+
+div {
+        margin: 10px;
+      }
+      
+      input {
+        padding: 8px;
+        margin-right: 8px;
+      }
+      
+      button {
+        padding: 8px 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      
+      button:hover {
+        background-color: #45a049;
+      }
+      
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      
+      li {
+        padding: 8px;
+        margin: 4px 0;
+        background-color: #f0f0f0;
+        cursor: pointer;
+      }
+      
+      li:hover {
+        background-color: #e0e0e0;
+      }
+      
