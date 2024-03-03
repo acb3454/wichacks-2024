@@ -20,6 +20,12 @@ export default function BasicExample({ onTagSelect }) {
         <Dropdown.Item eventKey="that feeling when you're falling in love">you're falling in love</Dropdown.Item>
         <Dropdown.Item eventKey="that feeling when you're feeling heartbroken">you're heartbroken</Dropdown.Item>
         <Dropdown.Item eventKey="that feeling when you're being ghosted">you're being ghosted</Dropdown.Item>
+        <Dropdown.Item eventKey="that feeling when you're no contact">you're no contact</Dropdown.Item>
+        <Dropdown.Item eventKey="that feeling when you face imposter syndrome">you face imposter syndrome</Dropdown.Item>
+        <Dropdown.Item eventKey="that feeling when you're happy">you're happy</Dropdown.Item>
+        <Dropdown.Item eventKey="that feeling when you're a gym girly">you're a gym girly</Dropdown.Item>
+        <Dropdown.Item eventKey="that feeling when you need to study">you need to study</Dropdown.Item>
+        <Dropdown.Item eventKey="that feeling when you need a hype man">you need a hype man</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
