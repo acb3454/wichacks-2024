@@ -88,7 +88,7 @@ const Post = ({ post, token }) => {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <h4>{post.username}</h4>
+            <h4 className = "userText">{post.username}</h4>
           </div>
         </div>
         <div className="postCenter">
