@@ -88,12 +88,12 @@ const Post = ({ post, token }) => {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <h3>{post.username}</h3>
+            <h4>{post.username}</h4>
           </div>
         </div>
         <div className="postCenter">
-          <span className="postText">{post.playlistName}</span>
-          <p>Tag name here</p>
+          <h3 className="postText">{post.playlistName}</h3>
+          {post.tag && <p className="tagStuff">{post.tag}</p>}
         </div>
 
         {/* Display songs if available */}
