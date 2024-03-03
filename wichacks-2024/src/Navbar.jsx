@@ -13,9 +13,10 @@ export default function Navbar() {
       </Link>
       <ul class>
         <CustomLink to="/feed">Feed</CustomLink>
+        <CustomLink to="/highlights">Highlights</CustomLink>
         <CustomLink to="/profile">Profile</CustomLink>
         <CustomLink to="/login">Login</CustomLink>
-        <CustomLink to="/highlights">Highlights</CustomLink>
+        
        
       </ul>
     </nav>
