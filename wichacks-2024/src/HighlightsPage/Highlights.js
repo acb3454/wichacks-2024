@@ -33,12 +33,12 @@ export default function Highlights() {
         <br></br>
 
         <div style={{alignItems:"center", backgroundColor:"#E3EBFF", borderRadius: "25px"}}>
-            <img src="https://people.com/thmb/qzuuM1D91Z5qbeSMqW9361jACUY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(959x425:961x427)/Adele-vegas-111922-02-2000-1dd4c7676b084c708839c27f139fc75c.jpg"
+            <img src="https://rareimpactfund.org/wp-content/uploads/2022/09/selena-rare-impact.jpg"
             style={{border: "solid gray", width:"30%", height:"30%", marginTop:"25px"}}
             ></img>
-            <h2>Adele</h2>
-            <p>Adele Laurie Blue Adkins is a highly acclaimed British singer-songwriter. Her breakthrough came with the release of "19" in 2008, followed by the chart-topping success of "21" in 2011, featuring hits like "Rolling in the Deep." Known for her soulful voice and emotive lyrics, Adele has earned numerous awards, including multiple Grammys. Adele is celebrated for her profound impact on the music industry and her ability to connect with audiences worldwide.</p>
-            <a href="https://www.adele.com">Check her out here!</a>
+            <h2>Selena Gomez</h2>
+            <p>Selena Gomez is a versatile American entertainer celebrated for her achievements in music and acting. She gained prominence with Disney's "Wizards of Waverly Place" and later led the band Selena Gomez & the Scene, producing chart-topping albums. Beyond entertainment, Gomez is known for her philanthropy, particularly in mental health advocacy and collaboration with UNICEF. Gomez's authenticity and resilience have made her a role model, impacting the lives of millions globally.</p>
+            <a href="https://www.selenagomez.com/#/">Check her out here!</a>
             <br></br><br></br>
         </div>
 
