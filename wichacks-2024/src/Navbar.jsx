@@ -1,12 +1,17 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import headphoneLogo from "./Photos/TFWPicLogo.png"
+import TFWtext from "./Photos/TFW.png"
 
 export default function Navbar() {
   return (
     <nav className="nav">
       <Link to="/" className="site-title">
-        Site Name
+      <img style={{ width: "75px", height: "75px", marginRight: "10px"}}
+      src={headphoneLogo} alt="TFW" />
+      <img style={{ width: "75px", height: "75px"}}
+      src={TFWtext} alt="TFW..." />
       </Link>
-      <ul>
+      <ul class>
         <CustomLink to="/feed">Feed</CustomLink>
         <CustomLink to="/profile">Profile</CustomLink>
         <CustomLink to="/login">Login</CustomLink>
