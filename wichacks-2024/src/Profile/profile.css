@@ -18,7 +18,8 @@
     bottom: 60px;
 
     display: block;
-    margin: auto; }
+    margin: auto; 
+    border-radius: 25px}
     
 .feed{
         background-color: #E3EBFF;
