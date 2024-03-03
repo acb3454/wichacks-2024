@@ -1,9 +1,11 @@
 import "./home.css";
+import logo from "../Photos/ThatFeelingWhenTxt.png"
 
 export default function Home() {
     return(
       <div class = "homeDiv">
-        <h1>that feeling when...</h1>
+
+        <img src = {logo}/>
         <h2>you develop a social media platform to uplift one another through music and inspire community.</h2>
 
         <div class = "container">
