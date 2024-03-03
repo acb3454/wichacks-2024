@@ -9,7 +9,7 @@ import { Route, Routes } from "react-router-dom"
 
 function App() {
   const CLIENT_ID = "470974f837054eeea1df14cebc95f27f"
-  const REDIRECT_URI = "http://localhost:3000"
+  const REDIRECT_URI = "http://localhost:3001"
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
   const SCOPES = "user-top-read"; 
