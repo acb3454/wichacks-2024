@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 
 app.post('/updateData', (req, res) => {
   const newData = req.body;
+  console.log("data received: " + newData)
   
   // Use an absolute path
   const existingData = require(path.resolve(__dirname, 'postData'));
