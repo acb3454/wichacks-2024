@@ -12,7 +12,7 @@ function App() {
   const REDIRECT_URI = encodeURIComponent("http://localhost:3000");
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
-  const SCOPES = "user-top-read"; 
+  const SCOPES = "user-top-read playlist-modify-public playlist-modify-private"; 
   const SHOW_DIALOG = true;
 
 
